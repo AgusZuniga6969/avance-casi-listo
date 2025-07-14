@@ -120,5 +120,34 @@
   const app = firebase.initializeApp(firebaseConfig);
   const db = firebase.firestore();
 </script>
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const form = document.querySelector("form");
+
+    form.addEventListener("submit", function (e) {
+      e.preventDefault();
+
+      const nombre = document.getElementById("nombre").value;
+      const correo = document.getElementById("email").value;
+      const clave = document.getElementById("password").value;
+      const confirmar = document.getElementById("password-confirm").value;
+
+      if (clave !== confirmar) {
+        alert("Las contraseñas no coinciden");
+        return;
+      }
+
+      db.collection("usuarios").add({ nombre, correo, clave })
+        .then(() => {
+          alert("Usuario registrado correctamente");
+          form.reset();
+        })
+        .catch((error) => {
+          console.error("Error al registrar:", error);
+          alert("Error al guardar el usuario: " + error.message);
+        });
+    });
+  });
+</script>
 </body>
 </html>
