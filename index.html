@@ -13,5 +13,60 @@
             <a href="./Portada/Portada.html" class="btn">¡Vamos!</a>
         </div>
     </div>
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Introducción</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="background">
+    <div class="content">
+      <h1 class="title">Visitar Tienda</h1>
+      <a href="./Portada/Portada.html" class="btn">¡Vamos!</a>
+    </div>
+  </div>
+
+  <!-- 🚀 Firebase SDKs -->
+  <script src="https://www.gstatic.com/firebasejs/10.5.0/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.5.0/firebase-firestore.js"></script>
+
+  <script>
+    const firebaseConfig = {
+      apiKey: "AIzaSyAkNyK-cvxyK7n2v1bufG82z8GLJv_nb7M",
+      authDomain: "la-moda-de-consuelo.firebaseapp.com",
+      projectId: "la-moda-de-consuelo",
+      storageBucket: "la-moda-de-consuelo.appspot.com",
+      messagingSenderId: "986285735022",
+      appId: "1:986285735022:web:eb6d38d5ecf0d5cd9513b",
+      measurementId: "G-RGMBD97GB9"
+    };
+
+    const app = firebase.initializeApp(firebaseConfig);
+    const db = firebase.firestore();
+
+    function guardarUsuario() {
+      db.collection("usuarios").add({
+        nombre: "Consuelo",
+        correo: "consuelo@mail.com",
+        direccion: "Santiago"
+      })
+      .then((docRef) => {
+        alert("Usuario guardado con ID: " + docRef.id);
+      })
+      .catch((error) => {
+        console.error("Error al guardar: ", error);
+      });
+    }
+  </script>
+
+  <!-- Botón de prueba -->
+  <button onclick="guardarUsuario()">Guardar usuario de prueba</button>
+
 </body>
+</html>
+ </body>
+
 </html>
